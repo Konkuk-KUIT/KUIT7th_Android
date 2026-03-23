@@ -1,0 +1,13 @@
+package com.example.kuit7_android.navigation
+
+sealed interface Route {
+    val route: String
+
+    data object HOME : Route {
+        override val route = "home"
+    }
+
+    data object CONTACT : Route {
+        override val route = "contact"
+    }
+}
