@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kuit7_android.R
 import com.example.kuit7_android.ui.contact.Call
+import com.example.kuit7_android.ui.contact.component.CallItem
 
 @Composable
 fun ContactScreen(modifier: Modifier = Modifier) {
@@ -61,25 +62,7 @@ fun ContactScreen(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .padding(horizontal = 20.dp)) {
             items(callList) { call ->
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Image(
-                        painter = painterResource(call.image),
-                        contentDescription = "profile",
-                        modifier = Modifier.size(63.dp)
-                    )
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(text = call.name)
-                        Text(text = call.phone)
-                    }
-                }
+                CallItem(call = call)
                 HorizontalDivider(
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
