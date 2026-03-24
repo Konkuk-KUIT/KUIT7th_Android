@@ -24,16 +24,16 @@ class MainActivity : ComponentActivity() {
         setContent {
             KUIT7_AndroidTheme {
 
-                val navController = rememberNavController()   // ⭐ 핵심
+                val navController = rememberNavController()
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
-                        BottomNavBar(navController)           // ⭐ 하단바 연결
+                        BottomNavBar(navController)
                     }
                 ) { innerPadding ->
 
-                    MainNavHost(                             // ⭐ 네비게이션 연결
+                    MainNavHost(
                         padding = innerPadding,
                         navController = navController
                     )
