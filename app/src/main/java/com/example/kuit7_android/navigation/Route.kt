@@ -10,4 +10,9 @@ sealed interface Route {
     data object CONTACT : Route {
         override val route = "contact"
     }
+    data object CONTACT_DETAIL : Route {
+        override val route = "contact_detail"
+    }
+
+    //미션: 상세화면 추가
 }
