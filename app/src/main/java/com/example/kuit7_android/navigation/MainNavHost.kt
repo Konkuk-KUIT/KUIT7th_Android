@@ -4,10 +4,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.kuit7_android.ui.contact.Call
 import com.example.kuit7_android.ui.contact.screen.ContactDetailScreen
 
@@ -47,6 +49,7 @@ fun MainNavHost(
         }
         //미션: composable 추가
         //설명: 각 화면 인자에 devcontrol 접목하여 뒤로가기 구현
+
         // 변경한 부분: 기사 상세 화면(4번 화면) composable 추가
         // 설명: ContactDetail과 동일한 방식으로 savedStateHandle에서 Article 꺼내 HomeDetailScreen 호출
         composable(Route.HOME_DETAIL.route) {

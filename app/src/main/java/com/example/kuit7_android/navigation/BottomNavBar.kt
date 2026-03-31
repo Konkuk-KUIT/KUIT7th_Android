@@ -17,10 +17,13 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.kuit7_android.ui.contact.screen.ContactScreen
 
 @Composable
 fun BottomNavBar(
@@ -76,4 +79,10 @@ fun BottomNavBar(
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun MainNavHostPreview() {
+    BottomNavBar(rememberNavController())
 }
