@@ -15,4 +15,8 @@ sealed interface Route {
     }
 
     //미션: 상세화면 추가
+    // 변경한 부분: 기사 상세 화면(4번 화면) 라우트 추가
+    data object HOME_DETAIL : Route {
+        override val route = "home_detail"
+    }
 }

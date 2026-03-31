@@ -12,6 +12,8 @@ import com.example.kuit7_android.ui.contact.Call
 import com.example.kuit7_android.ui.contact.screen.ContactDetailScreen
 
 import com.example.kuit7_android.ui.contact.screen.ContactScreen
+import com.example.kuit7_android.ui.home.Article
+import com.example.kuit7_android.ui.home.screen.HomeDetailScreen
 import com.example.kuit7_android.ui.home.screen.HomeScreen
 
 @Composable
@@ -24,8 +26,9 @@ fun MainNavHost(
         startDestination = Route.HOME.route,
         modifier = Modifier.padding(padding)
     ) {
+        // 변경한 부분: HomeScreen에 navController 인자 추가 (기사 클릭 시 상세 화면 이동 위해)
         composable(Route.HOME.route) {
-            HomeScreen()
+            HomeScreen(navController = navController)
         }
 
         composable(Route.CONTACT.route) {
@@ -44,5 +47,20 @@ fun MainNavHost(
         }
         //미션: composable 추가
         //설명: 각 화면 인자에 devcontrol 접목하여 뒤로가기 구현
+        // 변경한 부분: 기사 상세 화면(4번 화면) composable 추가
+        // 설명: ContactDetail과 동일한 방식으로 savedStateHandle에서 Article 꺼내 HomeDetailScreen 호출
+        composable(Route.HOME_DETAIL.route) {
+            val article = navController
+                .previousBackStackEntry
+                ?.savedStateHandle
+                ?.get<Article>("article")
+
+            article?.let {
+                HomeDetailScreen(
+                    article = it,
+                    navController = navController
+                )
+            }
+        }
     }
 }
