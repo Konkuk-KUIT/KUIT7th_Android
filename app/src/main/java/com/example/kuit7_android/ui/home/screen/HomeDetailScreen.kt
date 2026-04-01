@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -72,82 +73,84 @@ fun HomeDetailScreen(
             )
         }
 
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(30.dp)
         ) {
-            Image(
-                painter = painterResource(article.image),
-                contentDescription = "news_image",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(15.dp)),
-                contentScale = ContentScale.Crop
-            )
-            Spacer(Modifier.height(19.dp))
-
-            Box(
-                modifier = Modifier
-                    .size(width = 64.dp, height = 24.dp)
-                    .clip(RoundedCornerShape(15.dp))
-                    .background(Color(0xFF1877F2))
-            ) {
-                Text(
-                    article.category,
-                    fontSize = 14.sp,
-                    color = Color.White,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-
-            Spacer(Modifier.height(4.dp))
-            Text(article.title, fontSize = 20.sp)
-            Spacer(Modifier.height(13.dp))
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            item {
                 Image(
-                    painter = painterResource(imageRes),
+                    painter = painterResource(article.image),
                     contentDescription = "news_image",
                     modifier = Modifier
-                        .size(20.dp)
-                        .clip(CircleShape)
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(15.dp)),
+                    contentScale = ContentScale.Crop
                 )
-                Spacer(Modifier.width(4.dp))
-                Text(article.newspaper)
-                Spacer(Modifier.width(8.dp))
+                Spacer(Modifier.height(19.dp))
 
-                Icon(
-                    painter = painterResource(R.drawable.ic_clock),
-                    contentDescription = "clock",
-                    modifier = Modifier.size(14.dp)
-                )
-                Spacer(Modifier.width(3.dp))
-                Text(article.time)
-                Text(" ago")
-            }
-
-            Spacer(Modifier.height(20.dp))
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(160.dp)
-                    .border(
-                        width = 1.2.dp,
-                        color = Color(0xFF1877F2),
-                        shape = RoundedCornerShape(15.dp)
-                    )
-            ) {
-                Text(
-                    article.content,
-                    fontSize = 14.sp,
+                Box(
                     modifier = Modifier
-                        .fillMaxHeight()
-                        .padding(20.dp)
-                )
+                        .size(width = 64.dp, height = 24.dp)
+                        .clip(RoundedCornerShape(15.dp))
+                        .background(Color(0xFF1877F2))
+                ) {
+                    Text(
+                        article.category,
+                        fontSize = 14.sp,
+                        color = Color.White,
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+
+                Spacer(Modifier.height(4.dp))
+                Text(article.title, fontSize = 20.sp)
+                Spacer(Modifier.height(13.dp))
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        painter = painterResource(imageRes),
+                        contentDescription = "news_image",
+                        modifier = Modifier
+                            .size(20.dp)
+                            .clip(CircleShape)
+                    )
+                    Spacer(Modifier.width(4.dp))
+                    Text(article.newspaper)
+                    Spacer(Modifier.width(8.dp))
+
+                    Icon(
+                        painter = painterResource(R.drawable.ic_clock),
+                        contentDescription = "clock",
+                        modifier = Modifier.size(14.dp)
+                    )
+                    Spacer(Modifier.width(3.dp))
+                    Text(article.time)
+                    Text(" ago")
+                }
+
+                Spacer(Modifier.height(20.dp))
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(160.dp)
+                        .border(
+                            width = 1.2.dp,
+                            color = Color(0xFF1877F2),
+                            shape = RoundedCornerShape(15.dp)
+                        )
+                ) {
+                    Text(
+                        article.content,
+                        fontSize = 14.sp,
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .padding(20.dp)
+                    )
+                }
             }
         }
     }
