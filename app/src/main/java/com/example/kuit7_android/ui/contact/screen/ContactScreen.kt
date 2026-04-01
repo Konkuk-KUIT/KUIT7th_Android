@@ -22,12 +22,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.kuit7_android.R
+import com.example.kuit7_android.navigation.Route
 import com.example.kuit7_android.ui.contact.Call
 import com.example.kuit7_android.ui.contact.component.CallItem
 
 @Composable
-fun ContactScreen(modifier: Modifier = Modifier) {
+fun ContactScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier) {
     val callList = listOf<Call>(
         Call(
             image = R.drawable.img_profile1,
@@ -62,7 +67,18 @@ fun ContactScreen(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .padding(horizontal = 20.dp)) {
             items(callList) { call ->
-                CallItem(call = call)
+                CallItem(
+                    call = call,
+                    onClick={
+                        navController.currentBackStackEntry
+                            ?.savedStateHandle
+                            ?.set("call",call)
+
+                        navController.navigate(Route.CONTACT_DETAIL.route){
+                            launchSingleTop=true
+                        }
+                    }
+                )
                 HorizontalDivider(
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
@@ -74,5 +90,5 @@ fun ContactScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 private fun ContactScreenPreview() {
-    ContactScreen()
+    ContactScreen(rememberNavController())
 }
