@@ -1,4 +1,4 @@
-package com.example.kuitweek2
+package com.example.kuit7
 
 data class NewsArticle(
     val image: Int,

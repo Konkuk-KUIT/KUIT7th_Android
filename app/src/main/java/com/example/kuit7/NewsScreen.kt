@@ -1,4 +1,4 @@
-package com.example.kuitweek2
+package com.example.kuit7
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
