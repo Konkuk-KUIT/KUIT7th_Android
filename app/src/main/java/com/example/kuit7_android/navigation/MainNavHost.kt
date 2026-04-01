@@ -12,6 +12,8 @@ import com.example.kuit7_android.ui.contact.Call
 import com.example.kuit7_android.ui.contact.screen.ContactDetailScreen
 
 import com.example.kuit7_android.ui.contact.screen.ContactScreen
+import com.example.kuit7_android.ui.home.Article
+import com.example.kuit7_android.ui.home.screen.HomeDetailScreen
 import com.example.kuit7_android.ui.home.screen.HomeScreen
 
 @Composable
@@ -25,7 +27,21 @@ fun MainNavHost(
         modifier = Modifier.padding(padding)
     ) {
         composable(Route.HOME.route) {
-            HomeScreen()
+            HomeScreen(navController = navController)
+        }
+
+        composable(Route.HOME_DETAIL.route) {
+            val article = navController
+                .previousBackStackEntry
+                ?.savedStateHandle
+                ?.get<Article>("article")
+
+            article?.let {
+                HomeDetailScreen(
+                    article = it,
+                    navController = navController
+                )
+            }
         }
 
         composable(Route.CONTACT.route) {
