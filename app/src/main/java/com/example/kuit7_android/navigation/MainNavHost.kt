@@ -8,8 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.kuit7_android.ui.contact.Call
+import com.example.kuit7_android.ui.contact.screen.ContactDetailScreen
 
 import com.example.kuit7_android.ui.contact.screen.ContactScreen
+import com.example.kuit7_android.ui.home.screen.HomeDetailScreen
 import com.example.kuit7_android.ui.home.screen.HomeScreen
 
 @Composable
@@ -23,11 +26,40 @@ fun MainNavHost(
         modifier = Modifier.padding(padding)
     ) {
         composable(Route.HOME.route) {
-            HomeScreen()
+            HomeScreen(navController=navController)
+        }
+        composable(Route.HOME_DETAIL.route){
+            val article=navController
+                .previousBackStackEntry
+                ?.savedStateHandle
+                ?.get<com.example.kuit7_android.ui.home.Article>("article")
+
+            article?.let{
+                HomeDetailScreen(
+                    article=it,
+                    navController=navController
+                )
+            }
         }
 
+
         composable(Route.CONTACT.route) {
-            ContactScreen()
+            ContactScreen(navController=navController)
         }
+        composable(Route.CONTACT_DETAIL.route) {
+            val call = navController
+                .previousBackStackEntry
+                ?.savedStateHandle
+                ?.get<Call>("call")
+
+            call?.let {
+                ContactDetailScreen(
+                    call = it,
+                    navController = navController
+                )
+            }
+        }
+
+
     }
 }

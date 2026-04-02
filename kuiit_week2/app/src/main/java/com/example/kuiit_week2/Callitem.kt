@@ -1,7 +1,8 @@
-package com.example.kuit7_android.ui.contact.component
+package com.example.kuiit_week2
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.kuit7_android.ui.contact.Call
 
 @Composable
 fun CallItem(
@@ -22,11 +22,12 @@ fun CallItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick() }
             .clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            painter = painterResource(call.image),
+            painter = painterResource(id = call.image),
             contentDescription = "profile",
             modifier = Modifier.size(63.dp)
         )
