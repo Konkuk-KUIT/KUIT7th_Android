@@ -36,7 +36,6 @@ import com.example.kuit7_android.ui.contact.Call
 fun ContactDetailScreen(
     call: Call,
     navController: NavController,
-    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),

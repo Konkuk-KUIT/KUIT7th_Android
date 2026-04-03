@@ -1,7 +1,7 @@
 package com.example.kuit7_android.ui.home.screen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -40,7 +41,6 @@ import com.example.kuit7_android.ui.home.Article
 fun HomeDetailScreen(
     article: Article,
     navController: NavController,
-    modifier: Modifier = Modifier
 ) {
     val imageRes = when (article.newspaper) {
         "BBC News" -> R.drawable.ic_bbc
@@ -74,25 +74,27 @@ fun HomeDetailScreen(
                 tint = Color.Unspecified
             )
         }
-
-        // 기사 대표 이미지
-        Image(
-            painter = painterResource(article.image),
-            contentDescription = "article image",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(220.dp)
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
+        Spacer(modifier = Modifier.height(30.dp))
         Column(
-            modifier = Modifier.padding(horizontal = 20.dp)
+            modifier = Modifier.padding(horizontal = 30.dp)
         ) {
+            // 기사 대표 이미지
+            Image(
+                painter = painterResource(article.image),
+                contentDescription = "article image",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .clip(RoundedCornerShape(20.dp))
+            )
+
+            Spacer(modifier = Modifier.height(19.dp))
+
+
             // 카테고리 배지
             Surface(
-                shape = RoundedCornerShape(4.dp),
+                shape = RoundedCornerShape(10.dp),
                 color = Color(0xFF1877F2)
             ) {
                 Text(
@@ -103,18 +105,17 @@ fun HomeDetailScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(3.dp))
 
             // 기사 제목
             Text(
                 text = article.title,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
                 color = Color.Black,
                 lineHeight = 26.sp
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(13.dp))
 
             // 신문사 + 시간 정보
             Row(
@@ -142,27 +143,23 @@ fun HomeDetailScreen(
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = "${article.time} ago",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Light,
+                    fontSize = 13.sp,
                     color = Color(0xFF4D4A63)
                 )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             // 기사 본문 내용 (배경 박스 포함 - 4번 화면 디자인 참고)
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(
-                        color = Color(0xFFF0F4FF),
-                        shape = RoundedCornerShape(8.dp)
-                    )
-                    .padding(16.dp)
+                    .border(1.2.dp, Color(0xFF1877F2), RoundedCornerShape(15.dp))
+                    .padding(20.dp)
             ) {
                 Text(
                     text = article.content,
-                    fontSize = 15.sp,
+                    fontSize = 16.sp,
                     color = Color(0xFF333333),
                     lineHeight = 24.sp
                 )

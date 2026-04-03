@@ -27,7 +27,6 @@ import com.example.kuit7_android.ui.contact.component.CallItem
 @Composable
 fun ContactScreen(
     navController: NavController,
-    modifier: Modifier = Modifier
 ) {
     val callList = listOf<Call>(
         Call(
