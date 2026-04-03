@@ -1,6 +1,7 @@
 package com.example.kuit7_android.ui.contact.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +17,9 @@ import com.example.kuit7_android.ui.contact.Call
 @Composable
 fun CallItem(call: Call) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+        ,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(

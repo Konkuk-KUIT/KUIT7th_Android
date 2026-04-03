@@ -1,7 +1,9 @@
 package com.example.kuit7_android.ui.contact.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,29 +24,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.kuit7_android.R
 import com.example.kuit7_android.ui.contact.Call
 import com.example.kuit7_android.ui.contact.component.CallItem
+import com.example.kuit7_android.ui.contact.data.CallItem.callList
 
 @Composable
-fun ContactScreen(modifier: Modifier = Modifier) {
-    val callList = listOf<Call>(
-        Call(
-            image = R.drawable.img_profile1,
-            name = "박서연",
-            phone = "010-1234-5678"
-        ),
-        Call(
-            image = R.drawable.img_profile2,
-            name = "김건국",
-            phone = "010-1234-5678"
-        ),
-        Call(
-            image = R.drawable.img_profile3,
-            name = "홍길동",
-            phone = "010-1234-5678"
-        )
-    )
+fun ContactScreen(navController: NavController, modifier: Modifier = Modifier) {
     Column(modifier = Modifier.fillMaxSize()) {
         Row(
             modifier = Modifier.fillMaxWidth()
@@ -62,17 +49,18 @@ fun ContactScreen(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .padding(horizontal = 20.dp)) {
             items(callList) { call ->
-                CallItem(call = call)
-                HorizontalDivider(
-                    modifier = Modifier.padding(vertical = 8.dp)
-                )
+                Box(
+                    Modifier.clickable{
+                        navController.navigate(call)
+                    }
+                ) {
+                    CallItem(call = call)
+                }
+                    HorizontalDivider(
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
+
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun ContactScreenPreview() {
-    ContactScreen()
 }

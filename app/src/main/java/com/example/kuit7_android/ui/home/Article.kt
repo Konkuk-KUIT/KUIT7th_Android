@@ -1,5 +1,8 @@
 package com.example.kuit7_android.ui.home
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Article(
     val image: Int,
     val category: String,

@@ -1,6 +1,7 @@
 package com.example.kuit7_android.ui.home.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,55 +29,18 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.kuit7_android.R
 import com.example.kuit7_android.ui.home.Article
 import com.example.kuit7_android.ui.home.component.CategoryRow
 import com.example.kuit7_android.ui.home.component.ToggleTextRow
+import com.example.kuit7_android.ui.home.data.NewsItem.articles
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
-    val articles = listOf<Article>(
-        Article(
-            image = R.drawable.img_article1,
-            category = "Europe",
-            title = "Ukraine's President Zelensky to BBC: Blood money being paid for Russian oil",
-            content = "This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content.",
-            time = "14m",
-            newspaper = "BBC News"
-        ),
-        Article(
-            image = R.drawable.img_article2,
-            category = "Travel",
-            title = "Her train broke down. Her phone died. And then she met her future husband",
-            content = "This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content.",
-            time = "1h",
-            newspaper = "CNN"
-        ),
-        Article(
-            image = R.drawable.img_article3,
-            category = "Europe",
-            title = "Russian warship: Moskva sinks in Black Sea",
-            content = "This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content.",
-            time = "4h",
-            newspaper = "BBC News"
-        ),
-        Article(
-            image = R.drawable.img_article4,
-            category = "Money",
-            title = "Wind power produced more electricity than coal and nuclear sources for first time every",
-            content = "This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content.",
-            time = "4h",
-            newspaper = "USA Today"
-        ),
-        Article(
-            image = R.drawable.img_article5,
-            category = "Life",
-            title = "'We keep rising to new challenges:' For churches hit by",
-            content = "This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content. This is a content.",
-            time = "4h",
-            newspaper = "USA Today"
-        ),
-    )
+fun HomeScreen(navController: NavController, modifier: Modifier = Modifier) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -115,6 +79,13 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp)
+                        .clickable{
+                            navController.navigate(article) {
+                                popUpTo(navController.graph.startDestinationId)
+                                launchSingleTop = true
+                            }
+                        }
+
                 ) {
                     Image(
                         painter = painterResource(article.image),
@@ -186,10 +157,4 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun HomeScreenPreview() {
-    HomeScreen()
 }
