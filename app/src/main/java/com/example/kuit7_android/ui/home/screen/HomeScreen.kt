@@ -40,7 +40,7 @@ import com.example.kuit7_android.ui.home.component.ToggleTextRow
 
 @Composable
 fun HomeScreen(
-    navController: NavController,   //클릭이벤트를 처리하여 다른화면 이동시키기는 목적
+    navController: NavController,   //클릭이벤트를 처리하여 다른화면 이동시키는 목적
     modifier: Modifier = Modifier
 ) {
     val articles = listOf<Article>(
@@ -86,7 +86,7 @@ fun HomeScreen(
         ),
     )
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 24.dp)
     ) {

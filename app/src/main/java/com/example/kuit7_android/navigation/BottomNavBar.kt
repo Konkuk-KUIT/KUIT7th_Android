@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.kuit7_android.ui.profile.component.NavItem
+import com.example.kuit7_android.ui.theme.KuitTheme
 
 @Composable
 fun BottomNavBar(
@@ -51,29 +53,17 @@ fun BottomNavBar(
 
             val isSelected = currentRoute == tab.route.route
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .clickable {
-                        navController.navigate(tab.route.route) {
-                            popUpTo(navController.graph.startDestinationId)
-                            launchSingleTop = true
-                        }
+            NavItem(
+                icon=tab.icon,
+                text=tab.label,
+                isSelected=isSelected,
+                onClick={
+                    navController.navigate(tab.route.route) {
+                        popUpTo(navController.graph.startDestinationId)
+                        launchSingleTop = true
                     }
-            ) {
-                Icon(
-                    painter = painterResource(tab.icon),
-                    contentDescription = tab.label,
-                    tint = if (isSelected) Color(0xFF4E76E7) else Color.Gray,
-                    modifier = Modifier.size(24.dp)
-                )
-
-                Text(
-                    text = tab.label,
-                    fontSize = 12.sp,
-                    color = if (isSelected) Color(0xFF4E76E7) else Color.Gray
-                )
-            }
+                }
+            )
         }
     }
 }
