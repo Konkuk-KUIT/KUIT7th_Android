@@ -2,11 +2,78 @@ package com.example.kuit7_android.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.kuit7_android.R
 
 // Set of Material typography styles to start with
+
+val KuitFontFamily = FontFamily(
+    Font(R.font.spoqahandansneo_regular, FontWeight.Normal),
+    Font(R.font.spoqahandansneo_bold, FontWeight.Bold),
+    Font(R.font.spoqahandansneo_thin, FontWeight.Thin),
+    Font(R.font.spoqahandansneo_light, FontWeight.Light),
+    Font(R.font.spoqahandansneo_medium, FontWeight.Medium)
+)
+
+data class KuitTypography(
+    val B_24: TextStyle = TextStyle(
+        fontFamily = KuitFontFamily,
+        fontSize = 24.sp,
+        lineHeight = 24.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val M_20: TextStyle = TextStyle(
+        fontFamily = KuitFontFamily,
+        fontSize = 20.sp,
+        lineHeight = 20.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    val B_16: TextStyle = TextStyle(
+        fontFamily = KuitFontFamily,
+        fontSize = 16.sp,
+        lineHeight = 16.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val M_16: TextStyle = TextStyle(
+        fontFamily = KuitFontFamily,
+        fontSize = 16.sp,
+        lineHeight = 16.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    val R_16: TextStyle = TextStyle(
+        fontFamily = KuitFontFamily,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+        fontWeight = FontWeight.Normal
+    ),
+    val R_14: TextStyle = TextStyle(
+        fontFamily = KuitFontFamily,
+        fontSize = 14.sp,
+        lineHeight = 14.sp,
+        fontWeight = FontWeight.Normal
+    ),
+    val B_13: TextStyle = TextStyle(
+        fontFamily = KuitFontFamily,
+        fontSize = 13.sp,
+        lineHeight = 18.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    val R_13: TextStyle = TextStyle(
+        fontFamily = KuitFontFamily,
+        fontSize = 13.sp,
+        lineHeight = 18.sp,
+        fontWeight = FontWeight.Normal
+    ),
+    val R_12: TextStyle = TextStyle(
+        fontFamily = KuitFontFamily,
+        fontSize = 12.sp,
+        lineHeight = 12.sp,
+        fontWeight = FontWeight.Normal
+    )
+)
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,

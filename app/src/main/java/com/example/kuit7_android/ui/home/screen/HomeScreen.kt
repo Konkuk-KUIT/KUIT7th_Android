@@ -36,6 +36,7 @@ import com.example.kuit7_android.navigation.Route
 import com.example.kuit7_android.ui.home.Article
 import com.example.kuit7_android.ui.home.component.CategoryRow
 import com.example.kuit7_android.ui.home.component.ToggleTextRow
+import com.example.kuit7_android.ui.theme.KuitTheme
 
 @Composable
 fun HomeScreen(navController: NavController,
@@ -148,8 +149,8 @@ fun HomeScreen(navController: NavController,
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
                             text = article.title,
-                            fontSize = 16.sp,
-                            color = Color.Black,
+                            style = KuitTheme.typography.R_16,
+                            color = KuitTheme.colors.gray900,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis,
                         )
@@ -182,9 +183,8 @@ fun HomeScreen(navController: NavController,
                                 )
                                 Text(
                                     text = article.time,
-                                    fontSize = 14.sp,
-                                    color = Color(0xFF4D4A63),
-                                    fontWeight = FontWeight.Light
+                                    style = KuitTheme.typography.R_13,
+                                    color = KuitTheme.colors.gray400,
                                 )
                             }
 
