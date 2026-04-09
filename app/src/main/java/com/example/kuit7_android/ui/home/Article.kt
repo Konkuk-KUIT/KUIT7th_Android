@@ -1,5 +1,7 @@
 package com.example.kuit7_android.ui.home
 
+import java.io.Serializable
+
 data class Article(
     val image: Int,
     val category: String,
@@ -7,4 +9,4 @@ data class Article(
     val content: String,
     val time: String,
     val newspaper: String
-)
+): Serializable

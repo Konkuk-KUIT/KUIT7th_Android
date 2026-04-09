@@ -17,5 +17,10 @@ enum class NavTab (
         label = "연락처",
         route = Route.CONTACT
     ),
+    PROFILE(
+        icon=R.drawable.ic_person,
+        label="프로필",
+        route=Route.PROFILE
+    )
 
 }
