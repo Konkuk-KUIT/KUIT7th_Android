@@ -2,11 +2,64 @@ package com.example.kuit7_android.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.kuit7_android.R
 
-// Set of Material typography styles to start with
+val KuitFontFamilys = FontFamily(
+    Font(R.font.spoqahansansneoregular, weight = FontWeight.Normal),
+    Font(R.font.spoqahansansneobold, weight = FontWeight.Bold),
+    Font(R.font.spoqahansansneolight, weight = FontWeight.Light),
+    Font(R.font.spoqahansansneomedium, weight = FontWeight.Medium),
+    Font(R.font.spoqahansansneothin, weight = FontWeight.Thin)
+)
+
+data class KuitTypography(
+    val B_24: TextStyle = TextStyle(
+        fontFamily = KuitFontFamilys,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+    ),
+    val M_20: TextStyle = TextStyle(
+        fontFamily = KuitFontFamilys,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp,
+    ),
+    val M_16: TextStyle = TextStyle(
+        fontFamily = KuitFontFamilys,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+    ),
+    val R_16: TextStyle = TextStyle(
+        fontFamily = KuitFontFamilys,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+    ),
+    val R_14: TextStyle = TextStyle(
+        fontFamily = KuitFontFamilys,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+    ),
+    val B_13: TextStyle = TextStyle(
+        fontFamily = KuitFontFamilys,
+        fontWeight = FontWeight.Bold,
+        fontSize = 13.sp,
+    ),
+    val R_13: TextStyle = TextStyle(
+        fontFamily = KuitFontFamilys,
+        fontWeight = FontWeight.Bold,
+        fontSize = 13.sp,
+    ),
+    val R_12: TextStyle = TextStyle(
+        fontFamily = KuitFontFamilys,
+        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp,
+    ),
+
+    )
+
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,

@@ -18,4 +18,8 @@ sealed interface Route {
     data object CONTACT_DETAIL : Route {
         override val route = "contact_detail"
     }
+    data object PROFILE: Route {
+        override val route = "profile"
+    }
+
 }

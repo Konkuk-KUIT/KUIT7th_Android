@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.kuit7_android.ui.Profile.screen.ProfileScreen
 import com.example.kuit7_android.ui.contact.Call
 import com.example.kuit7_android.ui.contact.screen.ContactDetailScreen
 
@@ -58,6 +59,9 @@ fun MainNavHost(
                     navController = navController
                 )
             }
+        }
+        composable(Route.PROFILE.route) {
+            ProfileScreen()
         }
 
 
