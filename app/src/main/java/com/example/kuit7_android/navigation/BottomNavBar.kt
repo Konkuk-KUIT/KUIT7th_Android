@@ -1,26 +1,20 @@
 package com.example.kuit7_android.navigation
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.kuit7_android.ui.components.NavItem
 
 @Composable
 fun BottomNavBar(
@@ -51,29 +45,17 @@ fun BottomNavBar(
 
             val isSelected = currentRoute == tab.route.route
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .clickable {
-                        navController.navigate(tab.route.route) {
-                            popUpTo(navController.graph.startDestinationId)
-                            launchSingleTop = true
-                        }
+            NavItem(
+                icon=tab.icon,
+                text=tab.label,
+                isSelected=isSelected,
+                onClick={
+                    navController.navigate(tab.route.route) {
+                        popUpTo(navController.graph.startDestinationId)
+                        launchSingleTop = true
                     }
-            ) {
-                Icon(
-                    painter = painterResource(tab.icon),
-                    contentDescription = tab.label,
-                    tint = if (isSelected) Color(0xFF4E76E7) else Color.Gray,
-                    modifier = Modifier.size(24.dp)
-                )
-
-                Text(
-                    text = tab.label,
-                    fontSize = 12.sp,
-                    color = if (isSelected) Color(0xFF4E76E7) else Color.Gray
-                )
-            }
+                }
+            )
         }
     }
 }
