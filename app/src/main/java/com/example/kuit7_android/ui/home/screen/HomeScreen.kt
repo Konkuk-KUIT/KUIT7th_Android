@@ -1,6 +1,7 @@
 package com.example.kuit7_android.ui.home.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,13 +29,20 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.kuit7_android.R
+import com.example.kuit7_android.navigation.Route
 import com.example.kuit7_android.ui.home.Article
 import com.example.kuit7_android.ui.home.component.CategoryRow
 import com.example.kuit7_android.ui.home.component.ToggleTextRow
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    navController: NavController,   //클릭이벤트를 처리하여 다른화면 이동시키는 목적
+    modifier: Modifier = Modifier
+) {
     val articles = listOf<Article>(
         Article(
             image = R.drawable.img_article1,
@@ -78,7 +86,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         ),
     )
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 24.dp)
     ) {
@@ -115,6 +123,15 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp)
+                        .clickable {
+                            navController.currentBackStackEntry //현재 백스택의 top
+                                ?.savedStateHandle  //화면회전이나 시스템종료에도 데이터를 안전하게 보관
+                                ?.set("article", article)//savedstatehandle에 article객체 키,벨류로 저장
+                            navController.navigate(Route.HOME_DETAIL.route) {
+                                //mainnavhost의 composable실행
+                                launchSingleTop = true
+                            }
+                        },
                 ) {
                     Image(
                         painter = painterResource(article.image),
@@ -191,5 +208,5 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(rememberNavController())
 }

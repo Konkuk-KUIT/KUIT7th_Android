@@ -25,8 +25,9 @@ class MainActivity : ComponentActivity() {
             KUIT7_AndroidTheme {
 
                 val navController = rememberNavController()
-
-                Scaffold(
+                /*이 프로그램에서 remembernavcontroller리모컨을 사용할건데 이걸 navcontroller라는 상수에 담아서
+                함수들에게 전달하겠다*/
+                Scaffold(//화면의 표준규격, 내가 만든 bottomnavbar를 bottombar자리에 배치해라
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
                         BottomNavBar(navController)

@@ -4,11 +4,16 @@ import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
@@ -35,24 +40,34 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun KUIT7_AndroidTheme(
+    colors: KuitColors= KuitTheme.colors,
+    typography: KuitTypography= KuitTheme.typography,
+    darkColors: KuitColors?=null,
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
+   val currentColor=remember{if(darkColors!=null&&darkTheme) darkColors else colors}
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    val rememberedColors=remember{currentColor.copy()}.apply{update(currentColor)}
+
+    CompositionLocalProvider(
+        LocalColors provides rememberedColors,
+        LocalTypography provides typography
+    ) {
+        ProvideTextStyle(typography.R_16,content=content)
     }
+}
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+val LocalColors= staticCompositionLocalOf { lightColors() }
+val LocalTypography= staticCompositionLocalOf { KuitTypography() }
+
+object KuitTheme{
+    val colors: KuitColors
+        @Composable
+        @ReadOnlyComposable
+        get()=LocalColors.current
+    val typography: KuitTypography
+        @Composable
+        @ReadOnlyComposable
+        get()=LocalTypography.current
 }
