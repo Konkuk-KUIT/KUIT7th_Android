@@ -1,5 +1,7 @@
 package com.example.kuit7_android.navigation
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import com.example.kuit7_android.R
 
 enum class NavTab (
@@ -17,5 +19,10 @@ enum class NavTab (
         label = "연락처",
         route = Route.CONTACT
     ),
+    PROFILE(
+        icon = R.drawable.ic_profile,
+        label = "프로필",
+        route = Route.PROFILE
+    )
 
 }
