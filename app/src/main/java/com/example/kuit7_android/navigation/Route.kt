@@ -10,4 +10,18 @@ sealed interface Route {
     data object CONTACT : Route {
         override val route = "contact"
     }
+    data object CONTACT_DETAIL : Route {
+        override val route = "contact_detail"
+    }
+
+    //미션: 상세화면 추가
+    // 변경한 부분: 기사 상세 화면(4번 화면) 라우트 추가
+    data object HOME_DETAIL : Route {
+        override val route = "home_detail"
+    }
+    // [추가] 프로필 탭 라우트
+    data object PROFILE : Route {
+        override val route = "profile"
+    }
+
 }
