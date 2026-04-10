@@ -4,18 +4,16 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-
-import com.example.kuit7_android.ui.contact.screen.ContactScreen
-import com.example.kuit7_android.ui.contactDetail.screen.ContactDetailScreen
+import com.example.kuit7_android.ui.features.contact.Call
+import com.example.kuit7_android.ui.features.contact.screen.ContactScreen
+import com.example.kuit7_android.ui.features.contactDetail.screen.ContactDetailScreen
+import com.example.kuit7_android.ui.features.homeDetail.screen.HomeDetailScreen
 import com.example.kuit7_android.ui.home.Article
-import com.example.kuit7_android.ui.contact.Call
 import com.example.kuit7_android.ui.home.screen.HomeScreen
-import com.example.kuit7_android.ui.homeDetail.screen.HomeDetailScreen
 
 @Composable
 fun MainNavHost(

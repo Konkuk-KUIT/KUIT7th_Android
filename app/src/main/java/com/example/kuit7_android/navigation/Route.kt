@@ -1,5 +1,7 @@
 package com.example.kuit7_android.navigation
 
+import kotlinx.serialization.Serializable
+
 sealed interface Route {
     val route: String
 
@@ -11,3 +13,4 @@ sealed interface Route {
         override val route = "contact"
     }
 }
+
