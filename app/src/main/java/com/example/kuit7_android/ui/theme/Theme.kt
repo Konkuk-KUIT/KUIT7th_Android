@@ -40,7 +40,7 @@ fun KUIT7_AndroidTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val currentColor = remember { if(darkColors != null &&  darkTheme)
+    val currentColor = remember(darkTheme) { if(darkColors != null &&  darkTheme)
     darkColors else colors}
     val rememberedColors = remember { currentColor.copy() }.apply {update(currentColor)}
     CompositionLocalProvider(LocalColors provides rememberedColors,

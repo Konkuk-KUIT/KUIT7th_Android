@@ -19,4 +19,9 @@ sealed interface Route {
     data object HOME_DETAIL : Route {
         override val route = "home_detail"
     }
+    // [추가] 프로필 탭 라우트
+    data object PROFILE : Route {
+        override val route = "profile"
+    }
+
 }
