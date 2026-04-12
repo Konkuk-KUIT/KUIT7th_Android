@@ -15,6 +15,7 @@ import com.example.kuit7_android.ui.contact.screen.ContactScreen
 import com.example.kuit7_android.ui.home.Article
 import com.example.kuit7_android.ui.home.screen.HomeDetailScreen
 import com.example.kuit7_android.ui.home.screen.HomeScreen
+import com.example.kuit7_android.ui.profile.screen.ProfileScreen
 
 @Composable
 fun MainNavHost(
@@ -60,6 +61,10 @@ fun MainNavHost(
                     navController = navController
                 )
             }
+        }
+
+        composable(Route.PROFILE.route) {
+            ProfileScreen()
         }
     }
 }
