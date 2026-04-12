@@ -1,6 +1,7 @@
 package com.example.kuit7_android.ui.home.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,13 +29,19 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.kuit7_android.R
+import com.example.kuit7_android.navigation.Route
 import com.example.kuit7_android.ui.home.Article
 import com.example.kuit7_android.ui.home.component.CategoryRow
 import com.example.kuit7_android.ui.home.component.ToggleTextRow
+import com.example.kuit7_android.ui.theme.KuitTheme
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier) {
     val articles = listOf<Article>(
         Article(
             image = R.drawable.img_article1,
@@ -101,9 +108,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         CategoryRow()
 
         Spacer(modifier = Modifier.height(30.dp))
-        LazyColumn(
-
-        ) {
+        LazyColumn() {
             items(articles) { article ->
                 val imageRes = when (article.newspaper) {
                     "BBC News" -> R.drawable.ic_bbc
@@ -115,6 +120,15 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp)
+                        .clickable{
+                            navController.currentBackStackEntry
+                                ?.savedStateHandle
+                                ?.set("article", article)
+
+                            navController.navigate(Route.HOME_DETAIL.route) {
+                                launchSingleTop = true
+                            }
+                        }
                 ) {
                     Image(
                         painter = painterResource(article.image),
@@ -134,8 +148,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
                             text = article.title,
-                            fontSize = 16.sp,
-                            color = Color.Black,
+                            style = KuitTheme.typography.R_16,
+                            color = KuitTheme.colors.gray900,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis,
                         )
@@ -168,8 +182,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                                 )
                                 Text(
                                     text = article.time,
-                                    fontSize = 14.sp,
-                                    color = Color(0xFF4D4A63),
+                                    style = KuitTheme.typography.R_13,
+                                    color = KuitTheme.colors.gray400,
                                     fontWeight = FontWeight.Light
                                 )
                             }
@@ -191,5 +205,5 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 private fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(navController = rememberNavController())
 }
