@@ -3,37 +3,26 @@ package com.example.kuit7
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.kuit7.ui.theme.KUIT7_AndroidTheme
+import com.example.kuit7.ui.theme.KuitTypography
+import com.example.kuit7.ui.theme.lightColors
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme {
+            KUIT7_AndroidTheme(
+                colors = lightColors(),
+                typography = KuitTypography()
+            ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = KUIT7_AndroidTheme.colors.white
                 ) {
                     MainApp()
                 }
@@ -47,6 +36,10 @@ fun MainApp() {
     var currentTab by remember { mutableIntStateOf(0) }
     var selectedArticle by remember { mutableStateOf<NewsArticle?>(null) }
     var selectedCall by remember { mutableStateOf<Call?>(null) }
+
+    // State Hoisting: 프로필 화면 토글 상태
+    var isPushEnabled by remember { mutableStateOf(true) }
+    var isDarkMode by remember { mutableStateOf(false) }
 
     val articles = listOf(
         NewsArticle(R.drawable.image1, "Europe", "Ukraine's President Zelensky to BBC: Blood money being paid...", "BBC News", R.drawable.bbc_icon, "14m ago"),
@@ -91,6 +84,12 @@ fun MainApp() {
                             icon = { Text("📞", fontSize = 20.sp) },
                             label = { Text("연락처") }
                         )
+                        NavigationBarItem(
+                            selected = currentTab == 2,
+                            onClick = { currentTab = 2 },
+                            icon = { Text("👤", fontSize = 20.sp) },
+                            label = { Text("프로필") }
+                        )
                     }
                 }
             ) { padding ->
@@ -103,6 +102,15 @@ fun MainApp() {
                     1 -> ContactScreen(
                         callList = callList,
                         onContactClick = { selectedCall = it },
+                        modifier = Modifier.padding(padding)
+                    )
+                    2 -> ProfileScreen(
+                        isPushEnabled = isPushEnabled,
+                        onPushToggle = { isPushEnabled = it },
+                        isDarkMode = isDarkMode,
+                        onDarkModeToggle = { isDarkMode = it },
+                        articles = articles,
+                        onArticleClick = { selectedArticle = it },
                         modifier = Modifier.padding(padding)
                     )
                 }
