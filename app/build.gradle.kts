@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.kuit7_android"
+    namespace = "com.example.kuit7"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,8 +12,8 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.kuit7_android"
-        minSdk = 35
+        applicationId = "com.example.kuit7"
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -48,8 +48,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.navigation.runtime.ktx)
-    implementation("androidx.navigation:navigation-compose:2.7.7")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

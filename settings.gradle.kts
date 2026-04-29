@@ -22,6 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KUIT7_Android"
+rootProject.name = "KUIT7week1"
 include(":app")
- 
