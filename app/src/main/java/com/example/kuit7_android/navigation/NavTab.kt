@@ -1,0 +1,21 @@
+package com.example.kuit7_android.navigation
+
+import com.example.kuit7_android.R
+
+enum class NavTab (
+    val icon: Int,
+    val label: String,
+    val route: Route
+){
+    HOME(
+        icon = R.drawable.ic_home,
+        label = "홈",
+        route = Route.HOME
+    ),
+    CONTACT(
+        icon = R.drawable.ic_contact,
+        label = "연락처",
+        route = Route.CONTACT
+    ),
+
+}
